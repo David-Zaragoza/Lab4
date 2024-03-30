@@ -19,9 +19,7 @@ module Lab4
 	 output logic LED2,
 	 output logic LED3,
 	 output logic LED4,
-	 output logic LED5,
-	 output logic LED6,
-	 output logic LED7
+	 output logic LED5
 	 );
 	 
 	 logic [11:0] IR;
@@ -100,8 +98,6 @@ module Lab4
 	assign LED3 = (pcOut[3]);
 	assign LED4 = (pcOut[4]);
 	assign LED5 = (pcOut[5]);
-	assign LED6 = 1'b0;
-	assign LED7 = 1'b0;
 
 	hexDisplay #(3) zeroHex(.switch(dispHexZero), .display(HEX0));
 	hexDisplay #(3) oneHex(.switch(dispHexOne), .display(HEX1));
