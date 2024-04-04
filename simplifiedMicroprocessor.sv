@@ -1,4 +1,4 @@
-module Lab4
+module simplifiedMicroprocessor
 	(
 	 input logic clock,
 	 input logic KEY0,
