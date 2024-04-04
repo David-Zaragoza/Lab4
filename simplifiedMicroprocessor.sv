@@ -32,7 +32,7 @@ module simplifiedMicroprocessor
 	 assign switchInput = {SW4, SW3, SW2};
 	 assign dispRegNum = {SW7, SW6, SW5};
 
-	 (* ram_init_file = "Lab4.mif" *) logic [11:0] memory[63:0];
+	(* ram_init_file = "simplifiedMicroprocessor.mif" *) logic [11:0] memory[63:0];
 	 assign IR = memory[pcOut];
 
 	 assign OPCODE = IR[11:9];
