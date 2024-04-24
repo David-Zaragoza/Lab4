@@ -46,15 +46,15 @@ module simplifiedMicroprocessor
 	 assign writeEnD = ( ((OPCODE == 3'b001) || (OPCODE == 3'b010) || (OPCODE == 3'b011) || (OPCODE == 3'b100)) && (interInc && oneSec) );
 
 	 assign interRD = (switchInput == 3'b000) ? (dispRegNum) : (RD);
-	 registerFile reggie(.clock(clock), .reset(SW0), .RA(RA), .RB(RB), .RD(RD), .writeEnD(writeEnD), .dataInput(aluOut), .A(A), .B(B), .D(D), .regDisplay(dispRegNum), .contents(display765));
+	registerFile reggie(.clock(CLOCK_50), .reset(SW0), .RA(RA), .RB(RB), .RD(RD), .writeEnD(writeEnD), .dataInput(aluOut), .A(A), .B(B), .D(D), .regDisplay(dispRegNum), .contents(display765));
 	 
 	 alu loggie(.OPCODE(OPCODE), .RA(RA), .RB(RB), .RD(RD), .A(A), .B(B), .aluOut(aluOut));
 
 	 assign interInc = (SW1) ? (!KEY0) : (1'b1);
-	 programCounter #(64) county(.clock(clock), .reset(reset), .jump(jumpEnable), .cjump(cJumpEnable), .aluOutput(aluOut), .inc(interInc && oneSec), .dec(1'b0), .count(pcOut), .haltEnable(haltEnable));
+	programCounter #(64) county(.clock(CLOCK_50), .reset(reset), .jump(jumpEnable), .cjump(cJumpEnable), .aluOutput(aluOut), .inc(interInc && oneSec), .dec(1'b0), .count(pcOut), .haltEnable(haltEnable));
 	 logic oneSec;
 	 logic [25:0] countFifty;
-	 counter #(50000000) newbie(.clock(clock), .reset(reset), .inc(1'b1), .dec(1'b0), .count(countFifty));
+	counter #(50000000) newbie(.clock(CLOCK_50), .reset(reset), .inc(1'b1), .dec(1'b0), .count(countFifty));
 	 assign oneSec = (countFifty=='0);
 
 	always_comb begin
