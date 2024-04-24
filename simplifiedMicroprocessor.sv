@@ -1,6 +1,6 @@
 module simplifiedMicroprocessor
 	(
-	 input logic clock,
+	 input logic CLOCK_50,
 	 input logic KEY0,
 	 input logic SW0,
 	 input logic SW1,
